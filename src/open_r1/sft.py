@@ -67,6 +67,7 @@ logger = logging.getLogger(__name__)
 def main(script_args, training_args, model_args):
     # Set seed for reproducibility
     set_seed(training_args.seed)
+    import pdb;pdb.set_trace()
 
     ###############
     # Setup logging
@@ -100,6 +101,7 @@ def main(script_args, training_args, model_args):
     ################
     # Load datasets
     ################
+    import pdb;pdb.set_trace()
     dataset = load_dataset(script_args.dataset_name, name=script_args.dataset_config)
 
     ################
@@ -130,11 +132,12 @@ def main(script_args, training_args, model_args):
     ############################
     # Initialize the SFT Trainer
     ############################
+    import pdb;pdb.set_trace()
     trainer = SFTTrainer(
         model=model_args.model_name_or_path,
         args=training_args,
-        train_dataset=dataset[script_args.dataset_train_split],
-        eval_dataset=dataset[script_args.dataset_test_split] if training_args.eval_strategy != "no" else None,
+        train_dataset=dataset[script_args.dataset_train_split].select(range(1000)),
+        eval_dataset=dataset[script_args.dataset_test_split].select(range(50)) if training_args.eval_strategy != "no" else None,
         processing_class=tokenizer,
         peft_config=get_peft_config(model_args),
         callbacks=get_callbacks(training_args, model_args),
