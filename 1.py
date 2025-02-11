@@ -7,10 +7,12 @@ model_name = "data/Qwen2.5-0.5B-Open-R1-Distill"
 # 加载 tokenizer
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-import pdb; pdb.set_trace()
 # 加载模型（使用 float16 以减少显存占用）
 model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, device_map="auto")
 
+for a,b in model.lm_head.named_buffers(recurse=False):
+    import pdb; pdb.set_trace()
+    print(a)
 # 生成文本示例
 input_text = "你好，通义千问！"
 inputs = tokenizer(input_text, return_tensors="pt").to("cuda")  # 确保数据传输到 GPU
