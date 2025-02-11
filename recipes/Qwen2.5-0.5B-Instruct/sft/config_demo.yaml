@@ -28,7 +28,7 @@ logging_strategy: steps
 lr_scheduler_type: cosine
 packing: true
 max_seq_length: 1024
-max_steps: -1
+max_steps: 10
 num_train_epochs: 1
 output_dir: data/Qwen2.5-0.5B-Open-R1-Distill
 overwrite_output_dir: true

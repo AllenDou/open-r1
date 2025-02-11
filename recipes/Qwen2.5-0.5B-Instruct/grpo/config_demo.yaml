@@ -32,7 +32,7 @@ logging_strategy: steps
 lr_scheduler_type: cosine
 max_prompt_length: 512
 max_completion_length: 1024
-max_steps: -1
+max_steps: 10
 num_generations: 2
 num_train_epochs: 1
 output_dir: data/Qwen2.5-0.5B-Open-R1-GRPO
