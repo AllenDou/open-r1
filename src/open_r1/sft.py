@@ -132,11 +132,10 @@ def main(script_args, training_args, model_args):
     ############################
     # Initialize the SFT Trainer
     ############################
-    import pdb;pdb.set_trace()
     trainer = SFTTrainer(
         model=model_args.model_name_or_path,
         args=training_args,
-        train_dataset=dataset[script_args.dataset_train_split].select(range(1000)),
+        train_dataset=dataset[script_args.dataset_train_split].select(range(100)),
         eval_dataset=dataset[script_args.dataset_test_split].select(range(50)) if training_args.eval_strategy != "no" else None,
         processing_class=tokenizer,
         peft_config=get_peft_config(model_args),
@@ -152,6 +151,7 @@ def main(script_args, training_args, model_args):
         checkpoint = training_args.resume_from_checkpoint
     elif last_checkpoint is not None:
         checkpoint = last_checkpoint
+    import pdb;pdb.set_trace()
     train_result = trainer.train(resume_from_checkpoint=checkpoint)
     metrics = train_result.metrics
     metrics["train_samples"] = len(dataset[script_args.dataset_train_split])
