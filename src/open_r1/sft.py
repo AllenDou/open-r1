@@ -67,7 +67,7 @@ logger = logging.getLogger(__name__)
 def main(script_args, training_args, model_args):
     # Set seed for reproducibility
     set_seed(training_args.seed)
-    import pdb;pdb.set_trace()
+    #import pdb;pdb.set_trace()
 
     ###############
     # Setup logging
@@ -101,7 +101,7 @@ def main(script_args, training_args, model_args):
     ################
     # Load datasets
     ################
-    import pdb;pdb.set_trace()
+    #import pdb;pdb.set_trace()
     dataset = load_dataset(script_args.dataset_name, name=script_args.dataset_config)
 
     ################
@@ -151,7 +151,7 @@ def main(script_args, training_args, model_args):
         checkpoint = training_args.resume_from_checkpoint
     elif last_checkpoint is not None:
         checkpoint = last_checkpoint
-    import pdb;pdb.set_trace()
+    #import pdb;pdb.set_trace()
     train_result = trainer.train(resume_from_checkpoint=checkpoint)
     metrics = train_result.metrics
     metrics["train_samples"] = len(dataset[script_args.dataset_train_split])

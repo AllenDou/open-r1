@@ -214,6 +214,7 @@ def main(script_args, training_args, model_args):
     ###############
     logger.info("*** Train ***")
     checkpoint = None
+    import pdb; pdb.set_trace()
     if training_args.resume_from_checkpoint is not None:
         checkpoint = training_args.resume_from_checkpoint
     elif last_checkpoint is not None:
